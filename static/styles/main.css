@@ -1,0 +1,68 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+#propic{
+    width: auto;
+    height: auto;
+    max-width: 250px;
+    max-height: 100px;
+    aspect-ratio: 1/1;
+}
+
+.container{
+    width: max(400px, 80%);
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.center{
+    margin: auto;
+}
+
+.std-gap{
+    gap: 1rem;
+}
+
+.button {
+    
+    border: none;
+    color: white;
+    padding: 7px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+  }
+
+  .blue-button{
+    background-color: #008CBA;
+  }
+
+  .blue-clear{
+    color: #008CBA;
+    background-color: white;
+    border: #008CBA 1px solid;
+  }
+
+  .red-button{
+    background-color: #f44336;
+  }
+
+  .gray-button{
+    background-color: gray;
+  }
+
+  .green-button{
+    background-color: #04AA6D;
+  }

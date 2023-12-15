@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container center">
+    {% if edit %}
+    <h1>Edit a user</h1>
+    <form action="/edit/user/{{user.id}}/" method="POST" class="flex-column container std-gap">
+        <label>First Name</label>
+        <input name="first_name" placeholder="Enter a first name" value="{{user.first_name}}" required/>
+        <label>Last Name</label>
+        <input name="last_name" placeholder="Enter a last name" value="{{user.last_name}}" required/>
+        <label>Image URL</label>
+        <input name="img" placeholder="Provide an image of this user" value="{{user.image_url}}"/>
+        <div class="flex std-gap">
+            <a href="/" class="button blue-clear">Cancel</a>
+            <input class="button green-button" type="submit" value="Save">
+        </div>
+    </form>
+    {% else %}
+    <h1>Create a user</h1>
+    <form action="/create-user/" method="POST" class="flex-column container std-gap">
+        <label>First Name</label>
+        <input name="first_name" placeholder="Enter a first name"/>
+        <label>Last Name</label>
+        <input name="last_name" placeholder="Enter a last name"/>
+        <label>Image URL</label>
+        <input name="img" placeholder="Provide an image of this user"/>
+        <input class="button gray-button" type="submit">
+    </form>
+    {% endif %}
+
+
+</div>
+{% endblock %}

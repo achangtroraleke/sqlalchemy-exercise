@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>User detail page.</h1>
+<div class="std-gap flex">
+    
+    <div class="flex std-gap">
+        <img id="propic" src="{{user.image_url}}" alt="profile-picture">
+    </div>
+    <div class="flex-column">
+        <h3>{{user.first_name}} {{user.last_name}}</h3>
+
+        <div class="flex std-gap">
+            <a href="/edit/user/{{user.id}}/" class="button blue-button">Edit</a>
+            <a href="/delete/user/{{user.id}}/"  class="button red-button">Delete</a>
+        </div>
+    </div>
+    
+
+</div>
+
+{% endblock %}
