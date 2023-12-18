@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container center">
+    {% if edit %}
+    <form action="/posts/{{curr_post.id}}/edit/" method="POST" class="flex-column container std-gap">
+        <div class="flex std-gap">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Title" value="{{curr_post.title}}"  required/>
+            
+        </div>
+        <div class="flex std-gap">
+            <label>Content</label>
+            <textarea rows="4" name="content" placeholder="Body" required>{{curr_post.content}}</textarea>
+            
+        </div>
+
+        <div class="flex std-gap">
+            <a href="/" class="button blue-clear">Cancel</a>
+            <input class="button green-button" type="submit" value="Save">
+        </div>
+    </form>
+    {% else %}
+    <h1>Add Post for {{user.first_name}}</h1>
+    <form action="/user/{{user.id}}/posts/new/" method="POST" class="flex-column container std-gap">
+        <div class="flex std-gap">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Title"  required/>
+            
+        </div>
+        <div class="flex std-gap">
+            <label>Content</label>
+            <textarea rows="4" name="content" placeholder="Body" required></textarea>
+            
+        </div>
+
+        <div class="flex std-gap">
+            <a href="/" class="button blue-clear">Cancel</a>
+            <input class="button green-button" type="submit" value="Save">
+        </div>
+    </form>
+    {% endif %}
+</div>
+
+{% endblock %}

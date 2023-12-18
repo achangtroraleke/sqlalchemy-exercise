@@ -9,11 +9,23 @@
     </div>
     <div class="flex-column">
         <h3>{{user.first_name}} {{user.last_name}}</h3>
-
         <div class="flex std-gap">
             <a href="/edit/user/{{user.id}}/" class="button blue-button">Edit</a>
             <a href="/delete/user/{{user.id}}/"  class="button red-button">Delete</a>
+
         </div>
+        <ul>
+            {% for post in user.posts %}
+            <li>
+                <a href="/posts/{{post.id}}/">
+                    {{post.title}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        
+        <a href="/user/{{user.id}}/posts/new/" class="button blue-button">Post</a>
     </div>
     
 

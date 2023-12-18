@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container center">
+    <h1>Post Detail Page</h1>
+    <h2>{{curr_post.title}}</h2>
+
+    <h3>{{curr_post.content}}</h3>
+    <h3>By {{curr_post.author.first_name}} {{curr_post.last_name}}</h3>
+    <div class="flex std-gap">
+
+        <a href="/posts/{{curr_post.id}}/edit/" class="button blue-button">Edit</a>
+        <a href="/posts/{{curr_post.id}}/delete/"  class="button red-button">Delete</a>
+
+    </div>
+</div>
+
+{% endblock %}

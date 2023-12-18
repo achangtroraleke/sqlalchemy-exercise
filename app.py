@@ -1,8 +1,9 @@
 """Blogly application."""
 
 from flask import Flask, request, render_template, redirect
-from models import connect_db, db, User
+from models import connect_db, db, User, Post
 from sqlalchemy import text
+import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
@@ -36,6 +37,7 @@ def add_user():
 def show_user(user_id):
     print(user_id)
     user = User.query.get_or_404(user_id)
+
     
     return render_template('user-page.html', user= user)
 
@@ -62,6 +64,53 @@ def edit_user(user_id):
         return redirect('/')
     edit = True
     return render_template('create_user.html', edit = edit, user=user)
+
+@app.route('/user/<int:user_id>/posts/new/', methods=['GET', 'POST'])
+def post_page(user_id):
+    curr_user = User.query.get(user_id)
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        new_post = Post(
+            title = title,
+            content = content,
+            created_at = datetime.datetime.now(),
+            author_id = user_id,
+        )
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect(f'/user/{user_id}/')
+
+    return render_template('post_form.html', user = curr_user)
+
+@app.route('/posts/<int:post_id>/', methods=['GET'])
+def post_detail(post_id):
+    curr_post = Post.query.get(post_id)
+    return render_template('post_page.html', curr_post = curr_post)
+
+
+@app.route('/posts/<int:post_id>/edit/', methods=['GET',"POST"])
+def edit_post(post_id):
+    curr_post = Post.query.get(post_id)
+    if request.method =="POST":
+        print('print', curr_post)
+        title = request.form['title']
+        content = request.form['content']
+        curr_post.edit_info(title, content)
+        print(curr_post)
+        db.session.add(curr_post)
+        db.session.commit()
+        return redirect(f'/posts/{curr_post.id}/')
+
+    
+    return render_template('post_form.html', edit = True, curr_post=curr_post)
+
+@app.route('/posts/<int:post_id>/delete/')
+def delete_post(post_id):
+    curr_post = Post.query.get(post_id)
+    db.session.delete(curr_post)
+    db.session.commit()
+    return redirect('/')
 
 # if __name__ == '__main__':
 #     app.run(debug=True)
