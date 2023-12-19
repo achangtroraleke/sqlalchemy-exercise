@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container center ">
+    <h1>Edit Tag </h1>
+    <h3>Tag: {{tag.name}}</h3>
+    <div class="flex std-gap">
+        <a href="/tags/{{tag.id}}/edit/" class="button blue-button">Edit</a>
+        <a href="/tags/{{tag.id}}/delete" class="button red-button">Delete</a>
+    
+    </div>
+ 
+    <h4>Posts:</h4>
+    <ul>
+        {% for post in tag.post %}
+        <li><a href="/posts/{{post.id}}">{{post.title}} - {{post.author.first_name}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

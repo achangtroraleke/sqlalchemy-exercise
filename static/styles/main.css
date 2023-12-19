@@ -31,6 +31,13 @@ body{
     gap: 1rem;
 }
 
+.left-margin-auto{
+  margin-left: auto;
+}
+.right-margin-auto{
+  margin-right: auto;
+}
+
 .button {
     
     border: none;
@@ -70,4 +77,10 @@ body{
   form input,
   textarea{
     width: 100%;
+    align-items: center;
+  }
+
+
+  .align-center{
+    align-items: center;
   }

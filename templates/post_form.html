@@ -14,6 +14,19 @@
             <textarea rows="4" name="content" placeholder="Body" required>{{curr_post.content}}</textarea>
             
         </div>
+        <ul class="flex-column std-gap right-margin-auto">
+            {% for tag in tags %}
+            <li class="flex align-center">
+                {% if tag in curr_post.tags %}
+                <input type="checkbox" value="{{tag.id}}" name="tags" checked>
+                {% else %}
+                <input type="checkbox" value="{{tag.id}}" name="tags">
+                {% endif %}
+                <label for="{{tag}}">{{tag.name}}</label>
+            </li>
+            
+            {% endfor %}
+        </ul>
 
         <div class="flex std-gap">
             <a href="/" class="button blue-clear">Cancel</a>
@@ -31,8 +44,16 @@
         <div class="flex std-gap">
             <label>Content</label>
             <textarea rows="4" name="content" placeholder="Body" required></textarea>
-            
         </div>
+        <ul class="flex-column std-gap right-margin-auto">
+            {% for tag in tags %}
+            <li class="flex align-center">
+                <input type="checkbox" value="{{tag.id}}" name="tags">
+                <label for="{{tag}}">{{tag.name}}</label>
+            </li>
+            
+            {% endfor %}
+        </ul>
 
         <div class="flex std-gap">
             <a href="/" class="button blue-clear">Cancel</a>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container center">
+    {% if edit %}
+    <form action="/tags/{{tag.id}}/edit/" class="flex-column std-gap" method="POST">
+        <h1>Edit a tag</h1>
+        <div class="flex std-gap">
+            <label>Name</label>
+            <input type="text" name="tag" placeholder="Enter a name for tag" value="{{tag.name}}">
+            
+        </div>
+        <div class="flex std-gap left-margin-auto">
+            <a href="/" class="button blue-clear">Cancel</a>
+            <input class="button green-button" type="submit" value="Edit">
+        </div>
+    </form>
+
+    {% else %}
+    <form action="/tags/new/" class="flex-column std-gap" method="POST">
+        <h1>Create a tag</h1>
+        <div class="flex std-gap">
+            <label>Name</label>
+            <input type="text" name="tag" placeholder="Enter a name for tag">
+            
+        </div>
+        <div class="flex std-gap left-margin-auto">
+            <a href="/" class="button blue-clear">Cancel</a>
+            <input class="button green-button" type="submit" value="Add">
+        </div>
+    </form>
+    {% endif %}
+    
+</div>
+
+{% endblock %}

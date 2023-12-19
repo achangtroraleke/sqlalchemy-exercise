@@ -39,7 +39,30 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     author = db.relationship('User', backref = 'posts')
+    tags = db.relationship('Tag', secondary='posts_tags', backref='post')
+    
 
     def edit_info(self, title=title, content= content):
         self.title = title
         self.content = content
+
+class Tag(db.Model):
+    
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer,
+                   primary_key = True,
+                   autoincrement=True)
+    name = db.Column(db.String(10), nullable = False,)
+    # posts = db.relationship('PostTag', backref='tag')
+
+class PostTag(db.Model):
+    __tablename__ = "posts_tags"
+
+    post_id = db.Column(db.Integer,
+                        db.ForeignKey('posts.id'),
+                        primary_key = True)
+
+    tag_id = db.Column(db.Integer,
+                       db.ForeignKey('tags.id'),
+                       primary_key = True)

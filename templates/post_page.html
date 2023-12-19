@@ -7,8 +7,14 @@
 
     <h3>{{curr_post.content}}</h3>
     <h3>By {{curr_post.author.first_name}} {{curr_post.last_name}}</h3>
+    <h4>Tags</h4>
+    <ul>
+        {% for tag in curr_post.tags %}
+        <li><a href="/tags/{{tag.id}}">{{tag.name}}</a></li>
+        {% endfor %}
+    </ul>
     <div class="flex std-gap">
-
+    
         <a href="/posts/{{curr_post.id}}/edit/" class="button blue-button">Edit</a>
         <a href="/posts/{{curr_post.id}}/delete/"  class="button red-button">Delete</a>
 
